@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAXXTune – Serwis, Naprawa i Składanie Komputerów | Namysłów</title>
+    <meta name="description" content="Profesjonalny serwis komputerowy w Namysłowie. Składanie PC na zamówienie, optymalizacja pod gaming (więcej FPS), czyszczenie i naprawa komputerów. Obsługujemy Namysłów, Kluczbork, Olesno, Bierutów. Zadzwoń: 787 060 945">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="MAXXTune">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    <!-- Geo meta — sygnał lokalizacyjny dla wyszukiwarek -->
+    <meta name="geo.region" content="PL-OP">
+    <meta name="geo.placename" content="Namysłów, Polska">
+    <meta name="geo.position" content="51.057795;17.704890">
+    <meta name="ICBM" content="51.057795, 17.704890">
+    <!-- Open Graph -->
+    <meta property="og:title" content="MAXXTune – Serwis i Składanie PC | Namysłów">
+    <meta property="og:description" content="Profesjonalny serwis komputerowy w Namysłowie. Składanie PC, optymalizacja gaming, naprawa i czyszczenie. Zadzwoń: 787 060 945">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:url" content="https://maxxtune.pl">
+    <!-- Structured data: LocalBusiness (najważniejszy sygnał SEO dla lokalnej firmy) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "MAXXTune",
+      "description": "Profesjonalny serwis komputerowy – składanie PC na zamówienie, optymalizacja pod gaming, naprawa, czyszczenie i upgrade komputerów.",
+      "url": "https://maxxtune.pl",
+      "telephone": "+48787060945",
+      "email": "kontakt.maxxtune@gmail.com",
+      "priceRange": "40–350 PLN",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Namysłów",
+        "addressRegion": "Opolskie",
+        "postalCode": "46-100",
+        "addressCountry": "PL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "51.057795",
+        "longitude": "17.704890"
+      },
+      "areaServed": [
+        {"@type": "City", "name": "Namysłów"},
+        {"@type": "City", "name": "Kluczbork"},
+        {"@type": "City", "name": "Olesno"},
+        {"@type": "City", "name": "Bierutów"},
+        {"@type": "City", "name": "Wilków"},
+        {"@type": "City", "name": "Domaszowice"}
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Usługi MAXXTune",
+        "itemListElement": [
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Składanie komputerów PC na zamówienie"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Pełna optymalizacja systemu pod gaming – Gaming Boost"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Czyszczenie komputera i wymiana pasty termoprzewodzącej"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Naprawa i upgrade podzespołów PC"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Reinstalacja Windows 10 i Windows 11"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Diagnoza usterki komputera"}},
+          {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Overclocking CPU, RAM i GPU"}}
+        ]
+      },
+      "sameAs": [
+        "https://www.instagram.com/maxxtune/"
+      ]
+    }
+    </script>
+    <!-- Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation (fixed, outside smooth wrapper) -->
+<nav class="navbar">
+    <a href="#" class="logo">
+        <img src="logo_maxxtune.png" alt="MAXXTune – Serwis Komputerowy Namysłów" class="logo-img">
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <div class="nav-links" id="nav-links">
+        <a href="#pakiety">Pakiety Flagowe</a>
+        <a href="#serwis">Serwis</a>
+        <a href="#naprawa">Naprawa</a>
+        <a href="#dodatkowe">Dodatkowe</a>
+        <a href="#opinie">Opinie i Realizacje</a>
+        <a href="#kontakt" class="nav-btn btn-outline">Kontakt</a>
+    </div>
+    <div class="nav-overlay" id="nav-overlay"></div>
+</nav>
+
+    <!-- Smooth scroll wrapper -->
+    <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <p class="hero-location-tag"><i class="fa-solid fa-location-dot"></i> Serwis komputerowy · Namysłów i okolice</p>
+            <h1 class="hero-title">TWÓJ PC<br><span class="gradient-text">W DOBRYCH RĘKACH.</span></h1>
+            <p class="hero-subtitle">Naprawa, czyszczenie, składanie i optymalizacja komputerów w Namysłowie. Przynieś laptopa albo stacjonarkę — zajmę się wszystkim. Obsługuję też Kluczbork, Olesno i Bierutów.</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-value text-cyan">+123%</div>
+                    <div class="stat-label">WIĘCEJ FPS</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value text-cyan">-18°C</div>
+                    <div class="stat-label">NIŻSZA TEMP.</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value text-cyan">1-3</div>
+                    <div class="stat-label">DNI REALIZACJI</div>
+                </div>
+            </div>
+
+            <div class="hero-buttons">
+                <a href="#kontakt" class="btn-primary">Umów się już dziś <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+        <div class="hero-bg-glow"></div>
+    </header>
+
+    <!-- Zobacz Różnicę (Chart Section) -->
+    <section id="wykres" class="section bg-darker">
+        <div class="section-header">
+            <h2 class="section-title">EFEKT <span class="text-cyan">MAXXTUNE</span></h2>
+            <p class="section-desc">Pełne wykorzystanie sprzętu — bez przegrzewania, bez stutterów.</p>
+        </div>
+        
+        <div class="chart-container">
+            <div class="chart-stats-top">
+                <div class="chart-stat-box box-red">
+                    <div class="cs-label"><i class="fa-solid fa-triangle-exclamation"></i> PRZED</div>
+                    <div class="cs-avg">AVG <strong>96</strong> FPS</div>
+                    <div class="cs-low">1% LOW <strong>38</strong></div>
+                </div>
+                <div class="chart-stat-box box-cyan">
+                    <div class="cs-label"><i class="fa-solid fa-check"></i> PO MAXXTUNE</div>
+                    <div class="cs-avg">AVG <strong>214</strong> FPS</div>
+                    <div class="cs-low">1% LOW <strong>168</strong></div>
+                </div>
+            </div>
+
+            <div class="svg-chart-wrapper">
+                <svg viewBox="0 0 1000 400" preserveAspectRatio="none" class="fps-chart">
+                    <!-- Grid Lines -->
+                    <line x1="0" y1="50" x2="1000" y2="50" class="grid-line" />
+                    <line x1="0" y1="150" x2="1000" y2="150" class="grid-line" />
+                    <line x1="0" y1="250" x2="1000" y2="250" class="grid-line" stroke-dasharray="5,5" />
+                    <line x1="0" y1="350" x2="1000" y2="350" class="grid-line" />
+                    
+                    <line x1="500" y1="0" x2="500" y2="400" class="grid-line center-line" stroke-dasharray="5,5" />
+
+                    <!-- Area Fills -->
+                    <path d="M 0,350 L 0,250 C 50,250 100,150 150,150 C 200,150 200,280 250,280 C 300,280 300,220 350,220 C 400,220 400,300 450,300 C 480,300 500,250 500,250 L 500,350 Z" class="area-red" />
+                    <path d="M 500,350 L 500,250 C 530,250 550,150 600,150 C 650,150 650,80 700,80 C 750,80 800,90 850,90 C 900,90 950,100 1000,100 L 1000,350 Z" class="area-cyan" />
+
+                    <!-- Lines -->
+                    <path id="path-red" d="M 0,250 C 50,250 100,150 150,150 C 200,150 200,280 250,280 C 300,280 300,220 350,220 C 400,220 400,300 450,300 C 480,300 500,250 500,250" class="line-red" />
+                    <path id="path-cyan" d="M 500,250 C 530,250 550,150 600,150 C 650,150 650,80 700,80 C 750,80 800,90 850,90 C 900,90 950,100 1000,100" class="line-cyan" />
+
+                    <!-- Points -->
+                    <circle cx="150" cy="150" r="6" class="point-red point-anim" />
+                    <circle cx="450" cy="300" r="6" class="point-red point-anim" />
+                    <circle cx="500" cy="250" r="8" class="point-white point-anim" />
+                    <circle cx="700" cy="80" r="6" class="point-cyan point-anim" />
+                    <circle cx="850" cy="90" r="6" class="point-cyan point-anim" />
+                </svg>
+                
+                <!-- Tooltips -->
+                <div id="tt-bottleneck" class="chart-tooltip tt-red">PROCESOR<br>BOTTLENECK</div>
+                <div id="tt-stuttery" class="chart-tooltip tt-red tt-below">STUTTERY<br>I LAGI</div>
+                <div id="tt-stable" class="chart-tooltip tt-cyan">WYSOKI<br>I STABILNY FPS</div>
+                <div id="tt-smooth" class="chart-tooltip tt-cyan">PŁYNNA<br>ROZGRYWKA</div>
+
+                <!-- Y Axis Labels -->
+                <div class="y-label" id="y-240">240 FPS</div>
+                <div class="y-label" id="y-180">180 FPS</div>
+                <div class="y-label" id="y-120">120 FPS</div>
+                <div class="y-label text-red" id="y-60">60 FPS</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dlaczego Ja / Budowa PC (Why Me) -->
+    <section class="section why-me-section">
+        <div class="why-me-container">
+            <div class="why-me-text">
+                <h2>SKŁADAM KOMPUTERY, <br><span class="text-cyan">KTÓRE DOMINUJĄ</span></h2>
+                <p>Budowa PC u mnie to nie jest "tylko zmontowanie klocków". To proces, w którym dbam o każdy detal — od doboru części, przez czysty montaż, po stabilny system gotowy do gry. Dlaczego warto mi zaufać?</p>
+                <ul class="why-me-list">
+                    <li>
+                        <i class="fa-solid fa-microchip"></i>
+                        <div>
+                            <h4>Czysty, profesjonalny montaż</h4>
+                            <p>Nowy zestaw składam od podstaw z gwarancją kompatybilności, a na koniec instaluję czysty Windows i komplet sterowników — gotowy do działania. Pełną optymalizację, CustomOS i OC oferuję jako osobny pakiet <a href="#pakiety" class="text-cyan">„Gaming Boost”</a>.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-temperature-arrow-down"></i>
+                        <div>
+                            <h4>Zero kompromisów. Chłodno i cicho</h4>
+                            <p>Perfekcyjny cable management i dobór odpowiednich termopadów/past sprawia, że Twoja jednostka jest cicha nawet pod pełnym obciążeniem, a temperatury spadają.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-handshake-angle"></i>
+                        <div>
+                            <h4>Gwarancja Jakości MAXXTune</h4>
+                            <p>Każda usługa to mój podpis. Przechodzisz pełne testy stabilności, dostajesz wykresy przed/po i gwarancję, że sprzęt został zbalansowany pod kątem braku bottlenecków.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="why-me-image">
+                <div class="glow-box">
+                    <i class="fa-solid fa-computer"></i>
+                    <h3>Twój PC.<br>Nasza Pasja.</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flagowe Pakiety -->
+    <section id="pakiety" class="section bg-darker">
+        <div class="section-header">
+            <h2 class="section-title">PAKIETY <span class="text-cyan">FLAGOWE</span></h2>
+            <p class="section-desc">Najczęściej zamawiane usługi.</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card featured-card">
+                <div class="card-badge">POLECANE</div>
+                <div class="card-top">
+                    <h3><i class="fa-solid fa-bolt text-cyan"></i> FULL OPTYMALIZACJA<br>„Gaming Boost”</h3>
+                    <div class="price">250-300 <span class="currency">zł</span></div>
+                </div>
+                <p class="card-desc">Pełna optymalizacja systemu pod maksymalną wydajność i FPS. Ten sam sprzęt — inny poziom gry.</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check text-cyan"></i> Debloat Windowsa / CustomOS</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Optymalizacja procesów i usług</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Bezpieczne OC CPU / RAM / GPU</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Strojenie krzywej wentylatorów</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Pełne testy stabilności i temperatur</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Aktualizacja sterowników i BIOS</li>
+                </ul>
+            </div>
+
+            <div class="pricing-card featured-card">
+                <div class="card-badge">POLECANE</div>
+                <div class="card-top">
+                    <h3><i class="fa-solid fa-screwdriver-wrench text-cyan"></i> SKŁADANIE PC<br>od podstaw</h3>
+                    <div class="price">250 <span class="currency">zł</span></div>
+                </div>
+                <p class="card-desc">Pełna budowa zestawu pod Twój budżet i wymagania — od doboru części po gotowy do gry komputer.</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check text-cyan"></i> Indywidualny dobór części</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Gwarancja kompatybilności 100%</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Profesjonalny montaż i cable management</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Instalacja Windows + sterowniki</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Konfiguracja BIOS / XMP</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Test stabilności i temperatur</li>
+                    <li><i class="fa-solid fa-plus text-cyan"></i> Opcjonalnie: dokup pakiet „Gaming Boost” (optymalizacja + OC)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serwis i Czyszczenie -->
+    <section id="serwis" class="section">
+        <div class="section-header">
+            <h2 class="section-title">SERWIS I <span class="text-cyan">CZYSZCZENIE</span></h2>
+            <p class="section-desc">Twój PC dziękuje. Niższe temperatury nawet o 15-20°C — koniec głośnych wentylatorów!</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="card-top">
+                    <h3><i class="fa-solid fa-broom text-cyan"></i> CZYSZCZENIE<br>„Życie PC +2 lata”</h3>
+                    <div class="price">100 <span class="currency">zł</span></div>
+                </div>
+                <p class="card-desc">Gruntowne czyszczenie i wymiana materiałów termicznych. Niższe temperatury, koniec throttlingu.</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check text-cyan"></i> Rozbiórka na części pierwsze</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Czyszczenie wszystkich komponentów</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Wymiana pasty termoprzewodzącej</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Wymiana padów termicznych (jeśli trzeba)</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Test temperatur przed/po</li>
+                </ul>
+            </div>
+
+            <div class="pricing-card">
+                <div class="card-top">
+                    <h3><i class="fa-solid fa-compact-disc text-cyan"></i> CZYSZCZENIE PREMIUM<br>+ świeży system</h3>
+                    <div class="price">150 <span class="currency">zł</span></div>
+                </div>
+                <p class="card-desc">Wszystko z pakietu Czyszczenie + czysta instalacja Windows i komplet sterowników. Jak nowy PC.</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check text-cyan"></i> Pełne czyszczenie i wymiana past</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Reinstalacja Windows 10/11</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Komplet aktualnych sterowników</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Podstawowa optymalizacja systemu</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Przeniesienie ważnych plików</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Naprawa i Upgrade -->
+    <section id="naprawa" class="section bg-darker">
+        <div class="section-header">
+            <h2 class="section-title">NAPRAWA I <span class="text-cyan">UPGRADE</span></h2>
+            <p class="section-desc">Diagnoza, Naprawa, Modernizacja.</p>
+        </div>
+        
+        <div class="services-list-container">
+            <div class="service-row-detailed">
+                <div class="sr-header">
+                    <div class="sr-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                    <div class="sr-title">
+                        <h4>DIAGNOZA usterki</h4>
+                        <p>Sprawdzenie co się dzieje z PC, identyfikacja uszkodzonego komponentu i propozycja rozwiązania.</p>
+                    </div>
+                    <div class="sr-price">40 <span class="currency">zł</span></div>
+                </div>
+                <ul class="features-list columns-2 mt-3">
+                    <li><i class="fa-solid fa-check text-cyan"></i> Test komponentów (CPU, RAM, GPU, dysk)</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Identyfikacja problemu</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Uczciwa rekomendacja: naprawa czy upgrade</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> <strong>BEZPŁATNA przy zleceniu naprawy</strong></li>
+                </ul>
+            </div>
+
+            <div class="service-row-detailed">
+                <div class="sr-header">
+                    <div class="sr-icon"><i class="fa-solid fa-wrench"></i></div>
+                    <div class="sr-title">
+                        <h4>NAPRAWA i wymiana części</h4>
+                        <p>Wymiana uszkodzonych podzespołów, naprawa serwisowa. Cena = robocizna + część.</p>
+                    </div>
+                    <div class="sr-price">od 80 <span class="currency">zł</span></div>
+                </div>
+                <ul class="features-list columns-2 mt-3">
+                    <li><i class="fa-solid fa-check text-cyan"></i> Wymiana RAM / dysku / zasilacza / GPU</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Wymiana wentylatorów / coolera</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Naprawa zalanego/zakurzonego PC</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Pomoc w doborze zamiennika</li>
+                </ul>
+            </div>
+
+            <div class="service-row-detailed">
+                <div class="sr-header">
+                    <div class="sr-icon"><i class="fa-solid fa-arrow-up-right-dots"></i></div>
+                    <div class="sr-title">
+                        <h4>UPGRADE podzespołów</h4>
+                        <p>Doradztwo i montaż nowych części w istniejącym zestawie. "Co mi się opłaca wymienić?"</p>
+                    </div>
+                    <div class="sr-price">od 80 <span class="currency">zł</span></div>
+                </div>
+                <ul class="features-list columns-2 mt-3">
+                    <li><i class="fa-solid fa-check text-cyan"></i> Analiza wąskich gardeł (bottleneck)</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Dobór części pod Twój budżet</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Montaż i konfiguracja</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Pomiar wydajności przed/po</li>
+                </ul>
+            </div>
+
+            <div class="service-row-detailed">
+                <div class="sr-header">
+                    <div class="sr-icon"><i class="fa-solid fa-compact-disc"></i></div>
+                    <div class="sr-title">
+                        <h4>INSTALACJA systemu i softu</h4>
+                        <p>Czysta instalacja Windows, sterowniki i podstawowe oprogramowanie. Świeży start.</p>
+                    </div>
+                    <div class="sr-price">80 <span class="currency">zł</span></div>
+                </div>
+                <ul class="features-list columns-2 mt-3">
+                    <li><i class="fa-solid fa-check text-cyan"></i> Czysta instalacja Windows 10/11</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Aktywacja, aktualizacje, sterowniki</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Pakiet podstawowych programów</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Konfiguracja kont i preferencji</li>
+                </ul>
+            </div>
+            
+            <div class="warning-banner mt-3">
+                <i class="fa-solid fa-triangle-exclamation"></i> Nie zajmuję się lutowaniem BGA / reballingiem — tylko wymiana komponentów.
+            </div>
+        </div>
+    </section>
+
+    <!-- Usługi Dodatkowe -->
+    <section id="dodatkowe" class="section">
+        <div class="section-header">
+            <h2 class="section-title">USŁUGI <span class="text-cyan">DODATKOWE</span></h2>
+            <p class="section-desc">Co jeszcze mogę dla Ciebie zrobić.</p>
+        </div>
+        
+        <div class="pricing-grid">
+            <!-- Doradztwo -->
+            <div class="pricing-card">
+                <div class="card-top">
+                    <h3>DORADZTWO<br>online (chat)</h3>
+                    <div class="price price-gratis">GRATIS</div>
+                </div>
+                <p class="card-desc">Pomogę dobrać sprzęt, ocenię ofertę z OLX, doradzę co kupić w budżecie. Pisz na DM Instagram.</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check text-cyan"></i> Konsultacja przez Instagram / telefon</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Bez zobowiązań — pytaj śmiało</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Pełne zestawy w kilku budżetach</li>
+                </ul>
+            </div>
+
+            <!-- Konsultacja -->
+            <div class="pricing-card">
+                <div class="card-top">
+                    <h3>KONSULTACJA<br>kompleksowa</h3>
+                    <div class="price">60 <span class="currency">zł/h</span></div>
+                </div>
+                <p class="card-desc">Rozbudowana rozmowa: pełna analiza Twojego sprzętu, planu upgrade, strategia OC.</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check text-cyan"></i> Spotkanie / wideo / chat — jak wolisz</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Konkretny plan działania na piśmie</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Rekomendacja części + linki do zakupów</li>
+                </ul>
+            </div>
+
+            <!-- Optymalizacja Zdalna -->
+            <div class="pricing-card">
+                <div class="card-top">
+                    <h3>OPTYMALIZACJA<br>ZDALNA (test)</h3>
+                    <div class="price">99-149 <span class="currency">zł</span></div>
+                </div>
+                <p class="card-desc">Robię optymalizację bez przyjazdu — przez TeamViewer/AnyDesk. Nowa usługa w cenie promocyjnej.</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check text-cyan"></i> Bez wynoszenia PC z domu</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Debloat + optymalizacja procesów</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Konfiguracja sterowników i ustawień</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Brak OC sprzętowego (tylko soft)</li>
+                </ul>
+            </div>
+
+            <!-- Pierwszy PC -->
+            <div class="pricing-card featured-card">
+                <div class="card-badge">POLECANE</div>
+                <div class="card-top">
+                    <h3>PAKIET<br>„Pierwszy PC”</h3>
+                    <div class="price">350 <span class="currency">zł</span></div>
+                </div>
+                <p class="card-desc">Dla rodziców kupujących PC dziecku. Składanie + Windows + podstawowa optymalizacja systemu + zabezpieczenia.</p>
+                <ul class="features-list">
+                    <li><i class="fa-solid fa-check text-cyan"></i> Dobór i montaż części</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> System + niezbędne programy</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Podstawowa optymalizacja pod gaming (bez OC)</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> Podstawowa kontrola rodzicielska</li>
+                    <li><i class="fa-solid fa-check text-cyan"></i> <strong>Oszczędność 150 zł vs osobno</strong></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Opinie -->
+    <section id="opinie" class="section bg-darker">
+        <div class="section-header">
+            <h2 class="section-title">OPINIE <span class="text-cyan">KLIENTÓW</span></h2>
+            <p class="section-desc">Prawdziwe opinie klientów z wizytówki Google.</p>
+        </div>
+        
+        <div class="reviews-grid reviews-grid-centered">
+            <div class="review-card">
+                <div class="review-head">
+                    <div class="review-avatar">D</div>
+                    <div class="review-meta">
+                        <div class="review-author">Dawid</div>
+                        <div class="review-source"><i class="fa-brands fa-google"></i> Opinia z Google</div>
+                    </div>
+                </div>
+                <div class="stars">
+                    <i class="fa-solid fa-star text-cyan"></i><i class="fa-solid fa-star text-cyan"></i><i class="fa-solid fa-star text-cyan"></i><i class="fa-solid fa-star text-cyan"></i><i class="fa-solid fa-star text-cyan"></i>
+                </div>
+                <p class="review-text">"Jestem bardzo zadowolony z działań MAXXTune. Oddałem komputer który był zawirusowany, odzyskałem komputer po paru godzinach który został zresetowany i wzmocniony do maxów jego możliwości. Pozdrawiam serdecznie!"</p>
+            </div>
+            <div class="review-card">
+                <div class="review-head">
+                    <div class="review-avatar">J</div>
+                    <div class="review-meta">
+                        <div class="review-author">Julia</div>
+                        <div class="review-source"><i class="fa-brands fa-google"></i> Opinia z Google</div>
+                    </div>
+                </div>
+                <div class="stars">
+                    <i class="fa-solid fa-star text-cyan"></i><i class="fa-solid fa-star text-cyan"></i><i class="fa-solid fa-star text-cyan"></i><i class="fa-solid fa-star text-cyan"></i><i class="fa-solid fa-star text-cyan"></i>
+                </div>
+                <p class="review-text">"Polecam! Brat zadowolony ze sprzętu!"</p>
+            </div>
+        </div>
+        <div class="reviews-cta">
+            <a href="https://share.google/yZfeOiW3ebr37zOjW" target="_blank" rel="nofollow noopener noreferrer" class="btn-outline">Zobacz wszystkie opinie w Google <i class="fa-solid fa-arrow-up-right-from-square icon-sm"></i></a>
+        </div>
+    </section>
+
+    <!-- Jak to wygląda w praktyce -->
+    <section id="proces" class="section">
+        <div class="section-header">
+            <h2 class="section-title">JAK TO WYGLĄDA <span class="text-cyan">W PRAKTYCE</span></h2>
+            <p class="section-desc">Bez stresu, bez zobowiązań. Najpierw rozmowa, dopiero potem decyzja.</p>
+        </div>
+        
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h4>KONTAKT</h4>
+                <p>Telefon, Instagram lub email. Opisujesz co się dzieje.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h4>WYCENA</h4>
+                <p>Mówię od razu orientacyjną cenę. Bez ukrytych kosztów.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h4>USŁUGA</h4>
+                <p>Przywozisz PC. Robię w ustalonym terminie — zwykle 1-3 dni.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h4>ODBIÓR</h4>
+                <p>Płacisz po wykonaniu. Pokazuję wyniki testów przed/po.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontakt -->
+    <section id="kontakt" class="section contact-section bg-darker">
+        <div class="section-header">
+            <h2 class="section-title">UMÓW SIĘ <span class="text-cyan">JUŻ DZIŚ</span></h2>
+            <p class="section-desc">Wycena orientacyjna u mnie jest zawsze darmowa.</p>
+        </div>
+        
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                <div class="cc-info">
+                    <span>TELEFON</span>
+                    <strong>787 060 945</strong>
+                </div>
+            </div>
+            <a href="https://www.instagram.com/maxxtune/" target="_blank" rel="noopener noreferrer" class="contact-card hoverable">
+                <div class="contact-icon"><i class="fa-brands fa-instagram"></i></div>
+                <div class="cc-info">
+                    <span>INSTAGRAM DM</span>
+                    <strong>@MAXXTune</strong>
+                </div>
+            </a>
+            <div id="copy-email" class="contact-card hoverable" role="button" tabindex="0" aria-label="Kopiuj adres email">
+                <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div class="cc-info">
+                    <span class="cc-label">EMAIL</span>
+                    <strong>kontakt.maxxtune@gmail.com</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2507.7450534573486!2d17.704890176958802!3d51.057795143448296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4710173d5463bdd5%3A0x5718416086c21214!2sMAXXTune!5e0!3m2!1sen!2spl!4v1779298499225!5m2!1sen!2spl" class="map-iframe" width="100%" height="400" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="MAXXTune – Serwis Komputerowy Namysłów"></iframe>
+        </div>
+
+        <div class="guarantee-banner">
+            <i class="fa-solid fa-shield-halved"></i>
+            <span><strong>Gwarancja jakości MAXXTune</strong> — każda usługa to mój podpis.</span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="logo footer-logo">
+                <img src="logo_maxxtune.png" alt="MAXXTune – Serwis Komputerowy Namysłów" class="logo-img">
+            </div>
+            <p>Serwis komputerowy Namysłów · Składanie i naprawa PC · Optymalizacja gaming</p>
+        </div>
+        <div class="footer-seo">
+            <p>MAXXTune świadczy usługi serwisu komputerowego w Namysłowie i okolicach: Kluczbork, Olesno, Bierutów, Wilków, Domaszowice. Oferujemy składanie komputerów gamingowych na zamówienie, pełną optymalizację Windows pod gaming (więcej FPS, mniejsze temperatury), czyszczenie i wymianę pasty termoprzewodzącej, naprawa i wymiana podzespołów PC, reinstalację Windows 10 i Windows 11, overclocking CPU i RAM oraz diagnostykę usterek komputerowych.</p>
+        </div>
+        <div class="footer-bottom">
+            <p>Ceny zawierają robociznę. Koszt części liczony osobno wg faktury zakupu. Diagnoza w pakiecie Składanie / Upgrade — bezpłatna.<br>
+            Cennik orientacyjny — finalna cena ustalana po wstępnej rozmowie. Płatność: gotówka / BLIK / przelew.<br>&copy; 2026 MAXXTune. Wszystkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+
+    </div><!-- /#smooth-content -->
+    </div><!-- /#smooth-wrapper -->
+
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
