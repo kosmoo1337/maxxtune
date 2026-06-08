@@ -1287,12 +1287,14 @@ footer {
   flex: 1;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  /* Wyrównaj karty od góry */
+  align-items: flex-start;
 }
 .reviews-slider::-webkit-scrollbar {
   display: none;
 }
 
-/* Ważne: nadpisuje ogólne style .review-card */
+/* Karty */
 .reviews-slider .review-card {
   min-width: 320px !important;
   max-width: 320px !important;
@@ -1301,9 +1303,43 @@ footer {
   flex-grow: 0 !important;
   box-sizing: border-box;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  /* Karty nie mają stałej wysokości — rozciągają się przy "Pokaż więcej" */
 }
 .reviews-slider .review-card:hover {
   transform: translateY(-4px);
+}
+
+/* Obcinanie tekstu opinii */
+.review-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  max-height: calc(1.6em * 4); /* 4 linie */
+  transition: max-height 0.4s ease, -webkit-line-clamp 0s;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+/* Stan rozwinięty */
+.review-text--expanded {
+  -webkit-line-clamp: unset;
+  max-height: 1000px; /* wystarczająco duże dla każdej opinii */
+}
+
+/* Przycisk "Pokaż więcej / mniej" */
+.review-expand-btn {
+  background: none;
+  border: none;
+  color: var(--cyan, #00bcd4);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 4px 0 0;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+.review-expand-btn:hover {
+  opacity: 0.75;
 }
 
 /* Strzałki */
