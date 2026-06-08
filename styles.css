@@ -1265,99 +1265,64 @@ footer {
    SLIDER OPINII — wklej do styles.css
    ============================= */
 
-.reviews-slider-wrapper {
+/* Wrapper — position:relative żeby strzałki mogły być absolute */
+.reviews-outer {
   position: relative;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 8px;
+  padding: 0 56px; /* miejsce na strzałki */
 }
 
-/* Okno — przycina co wychodzi poza */
+/* Okno slidera */
 .reviews-slider {
-  overflow: hidden;
-  flex: 1;
-  padding: 8px 4px 16px;
+  overflow: hidden !important;
+  width: 100%;
 }
 
-/* Track — przesuwa się przez transform */
+/* Track — JS tworzy go dynamicznie */
 .reviews-track {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: flex-start !important;
   gap: 24px;
   transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   will-change: transform;
 }
 
-/* Karty */
+/* Karty — stała szerokość, bez rozciągania */
 .reviews-slider .review-card {
-  min-width: 320px !important;
-  max-width: 320px !important;
-  width: 320px !important;
+  min-width: 300px !important;
+  max-width: 300px !important;
+  width: 300px !important;
   flex-shrink: 0 !important;
   flex-grow: 0 !important;
-  box-sizing: border-box;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-.reviews-slider .review-card:hover {
-  transform: translateY(-4px);
+  box-sizing: border-box !important;
 }
 
-/* Obcinanie tekstu */
-.review-text {
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  max-height: calc(1.6em * 4);
-  transition: max-height 0.4s ease;
-  line-height: 1.6;
-  margin-bottom: 4px;
-}
-.review-text--expanded {
-  -webkit-line-clamp: unset;
-  max-height: 1000px;
-}
-
-/* Przycisk rozwijania */
-.review-expand-btn {
-  background: none;
-  border: none;
-  color: var(--cyan, #00bcd4);
-  cursor: pointer;
-  font-size: 0.85rem;
-  padding: 4px 0 0;
-  display: block;
-  transition: opacity 0.2s ease;
-}
-.review-expand-btn:hover {
-  opacity: 0.75;
-}
-
-/* Strzałki */
+/* Strzałki — absolute, zawsze na środku po bokach */
 .reviews-arrow {
-  flex-shrink: 0;
+  position: absolute !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 10;
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 2px solid var(--cyan, #00bcd4);
+  border: 2px solid var(--accent-cyan, #00bcd4);
   background: transparent;
-  color: var(--cyan, #00bcd4);
+  color: var(--accent-cyan, #00bcd4);
   cursor: pointer;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   font-size: 16px;
   transition: background 0.2s ease, color 0.2s ease;
-  z-index: 2;
-  align-self: center;
 }
+.reviews-arrow-left  { left: 0 !important; }
+.reviews-arrow-right { right: 0 !important; }
 .reviews-arrow:hover {
-  background: var(--cyan, #00bcd4);
+  background: var(--accent-cyan, #00bcd4);
   color: #000;
 }
 .reviews-arrow:disabled {
@@ -1366,27 +1331,50 @@ footer {
   pointer-events: none;
 }
 
+/* Obcinanie tekstu do 4 linii */
+.review-text {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  max-height: calc(1.6em * 4) !important;
+  transition: max-height 0.4s ease;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+.review-text--expanded {
+  -webkit-line-clamp: unset !important;
+  max-height: 1000px !important;
+}
+
+/* Przycisk "Pokaż więcej" */
+.review-expand-btn {
+  background: none;
+  border: none;
+  color: var(--accent-cyan, #00bcd4);
+  cursor: pointer;
+  font-size: 0.85rem;
+  padding: 4px 0 0;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+.review-expand-btn:hover { opacity: 0.75; }
+
 /* Responsywność */
 @media (max-width: 768px) {
+  .reviews-outer { padding: 0 44px; }
   .reviews-slider .review-card {
-    min-width: 280px !important;
-    max-width: 280px !important;
-    width: 280px !important;
+    min-width: 260px !important;
+    max-width: 260px !important;
+    width: 260px !important;
   }
-  .reviews-arrow {
-    width: 36px;
-    height: 36px;
-    font-size: 14px;
-  }
+  .reviews-arrow { width: 36px; height: 36px; font-size: 13px; }
 }
 @media (max-width: 480px) {
-  .reviews-slider-wrapper {
-    gap: 6px;
-    padding: 0 2px;
-  }
+  .reviews-outer { padding: 0 38px; }
   .reviews-slider .review-card {
-    min-width: calc(100vw - 100px) !important;
-    max-width: calc(100vw - 100px) !important;
-    width: calc(100vw - 100px) !important;
+    min-width: calc(100vw - 96px) !important;
+    max-width: calc(100vw - 96px) !important;
+    width: calc(100vw - 96px) !important;
   }
 }
