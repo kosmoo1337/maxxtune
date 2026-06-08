@@ -348,3 +348,71 @@ window.addEventListener("resize", function () {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); doCopy(); }
     });
 })()
+
+// =============================
+// SLIDER OPINII — wklej do script.js
+// =============================
+
+(function () {
+  const slider = document.getElementById('reviewsSlider');
+  const btnLeft = document.getElementById('arrowLeft');
+  const btnRight = document.getElementById('arrowRight');
+  const dotsContainer = document.getElementById('reviewsDots');
+
+  if (!slider || !btnLeft || !btnRight || !dotsContainer) return;
+
+  const cards = slider.querySelectorAll('.review-card');
+  const total = cards.length;
+  let current = 0;
+
+  function visibleCount() {
+    const sliderW = slider.offsetWidth;
+    const cardW = cards[0].offsetWidth + 24; // 24 = gap
+    return Math.max(1, Math.floor(sliderW / cardW));
+  }
+
+  function buildDots() {
+    dotsContainer.innerHTML = '';
+    const count = total - visibleCount() + 1;
+    for (let i = 0; i < count; i++) {
+      const d = document.createElement('button');
+      d.className = 'reviews-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Opinia ' + (i + 1));
+      d.addEventListener('click', () => goTo(i));
+      dotsContainer.appendChild(d);
+    }
+  }
+
+  function updateDots() {
+    dotsContainer.querySelectorAll('.reviews-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+  }
+
+  function goTo(index) {
+    const maxIndex = total - visibleCount();
+    current = Math.max(0, Math.min(index, maxIndex));
+    const cardW = cards[0].offsetWidth + 24;
+    slider.scrollLeft = current * cardW;
+    btnLeft.disabled = current === 0;
+    btnRight.disabled = current >= maxIndex;
+    updateDots();
+  }
+
+  btnLeft.addEventListener('click', () => goTo(current - 1));
+  btnRight.addEventListener('click', () => goTo(current + 1));
+
+  // Swipe na mobile
+  let touchStartX = 0;
+  slider.addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+  }, { passive: true });
+  slider.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+  }, { passive: true });
+
+  buildDots();
+  goTo(0);
+  window.addEventListener('resize', () => { buildDots(); goTo(current); });
+})();
