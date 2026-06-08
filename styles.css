@@ -1276,22 +1276,21 @@ footer {
   padding: 0 8px;
 }
 
+/* Okno — przycina co wychodzi poza */
 .reviews-slider {
+  overflow: hidden;
+  flex: 1;
+  padding: 8px 4px 16px;
+}
+
+/* Track — przesuwa się przez transform */
+.reviews-track {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   gap: 24px;
-  overflow: hidden;
-  scroll-behavior: smooth;
-  padding: 8px 4px 16px;
-  flex: 1;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  /* Wyrównaj karty od góry */
-  align-items: flex-start;
-}
-.reviews-slider::-webkit-scrollbar {
-  display: none;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
 
 /* Karty */
@@ -1303,31 +1302,28 @@ footer {
   flex-grow: 0 !important;
   box-sizing: border-box;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
-  /* Karty nie mają stałej wysokości — rozciągają się przy "Pokaż więcej" */
 }
 .reviews-slider .review-card:hover {
   transform: translateY(-4px);
 }
 
-/* Obcinanie tekstu opinii */
+/* Obcinanie tekstu */
 .review-text {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  max-height: calc(1.6em * 4); /* 4 linie */
-  transition: max-height 0.4s ease, -webkit-line-clamp 0s;
+  max-height: calc(1.6em * 4);
+  transition: max-height 0.4s ease;
   line-height: 1.6;
   margin-bottom: 4px;
 }
-
-/* Stan rozwinięty */
 .review-text--expanded {
   -webkit-line-clamp: unset;
-  max-height: 1000px; /* wystarczająco duże dla każdej opinii */
+  max-height: 1000px;
 }
 
-/* Przycisk "Pokaż więcej / mniej" */
+/* Przycisk rozwijania */
 .review-expand-btn {
   background: none;
   border: none;
@@ -1368,28 +1364,6 @@ footer {
   opacity: 0.3;
   cursor: default;
   pointer-events: none;
-}
-
-/* Dots */
-.reviews-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 16px;
-}
-.reviews-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.reviews-dot.active {
-  background: var(--cyan, #00bcd4);
-  transform: scale(1.3);
 }
 
 /* Responsywność */
