@@ -1371,11 +1371,17 @@ footer {
   .reviews-arrow { width: 36px; height: 36px; font-size: 13px; }
 }
 @media (max-width: 640px) {
-  .reviews-outer { padding: 0 !important; }
+  .reviews-outer {
+    padding: 0 !important;
+    /* Gradient na prawej krawędzi — sugeruje że jest więcej */
+    -webkit-mask-image: linear-gradient(to right, black 75%, transparent 100%);
+    mask-image: linear-gradient(to right, black 75%, transparent 100%);
+  }
   .reviews-arrow { display: none !important; }
   .reviews-slider .review-card {
-    min-width: calc(100vw - 32px) !important;
-    max-width: calc(100vw - 32px) !important;
-    width: calc(100vw - 32px) !important;
+    /* Karta trochę węższa niż ekran — następna karta "zagląda" z prawej */
+    min-width: calc(100vw - 80px) !important;
+    max-width: calc(100vw - 80px) !important;
+    width: calc(100vw - 80px) !important;
   }
 }
