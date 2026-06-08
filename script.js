@@ -354,8 +354,6 @@ window.addEventListener("resize", function () {
 // =============================
 
 document.addEventListener('DOMContentLoaded', function () {
-
-  // Poczekaj aż CSS zostanie zastosowany, potem inicjalizuj
   requestAnimationFrame(function () {
     requestAnimationFrame(function () {
       initExpandButtons();
@@ -366,19 +364,16 @@ document.addEventListener('DOMContentLoaded', function () {
   // --- "Pokaż więcej / mniej" ---
   function initExpandButtons() {
     document.querySelectorAll('.review-text').forEach(function (p) {
-      // Tymczasowo usuń obcinanie żeby zmierzyć pełną wysokość
       p.style.webkitLineClamp = 'unset';
       p.style.maxHeight = 'none';
       p.style.overflow = 'visible';
       var fullHeight = p.scrollHeight;
 
-      // Przywróć obcinanie i zmierz obciętą wysokość
       p.style.webkitLineClamp = '';
       p.style.maxHeight = '';
       p.style.overflow = '';
       var clampedHeight = p.clientHeight;
 
-      // Dodaj przycisk tylko jeśli tekst faktycznie jest obcięty
       if (fullHeight > clampedHeight + 5) {
         var btn = document.createElement('button');
         btn.className = 'review-expand-btn';
@@ -393,81 +388,58 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // --- Slider (płynne scrollowanie po jednej karcie) ---
+  // --- Slider z animacją transform ---
   function initSlider() {
     var slider = document.getElementById('reviewsSlider');
     var btnLeft = document.getElementById('arrowLeft');
     var btnRight = document.getElementById('arrowRight');
-    var dotsContainer = document.getElementById('reviewsDots');
 
-    if (!slider || !btnLeft || !btnRight || !dotsContainer) return;
+    if (!slider || !btnLeft || !btnRight) return;
 
-    var cards = Array.from(slider.querySelectorAll('.review-card'));
+    // Owij karty w track (potrzebny do transform)
+    var track = document.createElement('div');
+    track.className = 'reviews-track';
+    while (slider.firstChild) track.appendChild(slider.firstChild);
+    slider.appendChild(track);
+
+    var cards = Array.from(track.querySelectorAll('.review-card'));
     var total = cards.length;
+    var current = 0;
 
     function getCardWidth() {
-      return cards[0].getBoundingClientRect().width + 24; // 24 = gap
+      return cards[0].getBoundingClientRect().width + 24;
     }
 
     function visibleCount() {
       return Math.max(1, Math.floor(slider.offsetWidth / getCardWidth()));
     }
 
-    function currentIndex() {
-      return Math.round(slider.scrollLeft / getCardWidth());
+    function maxIndex() {
+      return Math.max(0, total - visibleCount());
     }
 
-    function buildDots() {
-      dotsContainer.innerHTML = '';
-      var count = Math.max(1, total - visibleCount() + 1);
-      for (var i = 0; i < count; i++) {
-        (function (idx) {
-          var d = document.createElement('button');
-          d.className = 'reviews-dot';
-          d.setAttribute('aria-label', 'Opinia ' + (idx + 1));
-          d.addEventListener('click', function () {
-            slider.scrollBy({ left: (idx - currentIndex()) * getCardWidth(), behavior: 'smooth' });
-          });
-          dotsContainer.appendChild(d);
-        })(i);
-      }
-      updateDots();
+    function goTo(index) {
+      current = Math.max(0, Math.min(index, maxIndex()));
+      track.style.transform = 'translateX(-' + (current * getCardWidth()) + 'px)';
+      btnLeft.disabled = current === 0;
+      btnRight.disabled = current >= maxIndex();
     }
 
-    function updateDots() {
-      var idx = currentIndex();
-      dotsContainer.querySelectorAll('.reviews-dot').forEach(function (d, i) {
-        d.classList.toggle('active', i === idx);
-      });
-      btnLeft.disabled = slider.scrollLeft <= 0;
-      btnRight.disabled = slider.scrollLeft >= slider.scrollWidth - slider.offsetWidth - 2;
-    }
+    btnLeft.addEventListener('click', function () { goTo(current - 1); });
+    btnRight.addEventListener('click', function () { goTo(current + 1); });
 
-    // Płynne scrollowanie o jedną kartę
-    btnLeft.addEventListener('click', function () {
-      slider.scrollBy({ left: -getCardWidth(), behavior: 'smooth' });
-    });
-    btnRight.addEventListener('click', function () {
-      slider.scrollBy({ left: getCardWidth(), behavior: 'smooth' });
-    });
-
-    // Aktualizuj dots i przyciski po scrollu
-    slider.addEventListener('scroll', updateDots, { passive: true });
-
-    // Swipe na mobile
+    // Swipe
     var touchStartX = 0;
     slider.addEventListener('touchstart', function (e) {
       touchStartX = e.touches[0].clientX;
     }, { passive: true });
     slider.addEventListener('touchend', function (e) {
       var diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) {
-        slider.scrollBy({ left: diff > 0 ? getCardWidth() : -getCardWidth(), behavior: 'smooth' });
-      }
+      if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
     }, { passive: true });
 
-    buildDots();
-    window.addEventListener('resize', function () { buildDots(); });
+    window.addEventListener('resize', function () { goTo(current); });
+    goTo(0);
   }
 
 });
