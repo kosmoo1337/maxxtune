@@ -1382,9 +1382,9 @@ footer {
   }
   .reviews-arrow { display: none !important; }
   .reviews-slider .review-card {
-    /* Węższe niż ekran — następna karta zagląda z prawej */
-    min-width: calc(100vw - 72px) !important;
-    max-width: calc(100vw - 72px) !important;
-    width: calc(100vw - 72px) !important;
+    /* 78vw — ~22% następnej karty widoczne z prawej */
+    min-width: 78vw !important;
+    max-width: 78vw !important;
+    width: 78vw !important;
   }
 }
