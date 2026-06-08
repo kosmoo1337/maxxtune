@@ -1373,15 +1373,18 @@ footer {
 @media (max-width: 640px) {
   .reviews-outer {
     padding: 0 !important;
-    /* Gradient na prawej krawędzi — sugeruje że jest więcej */
-    -webkit-mask-image: linear-gradient(to right, black 75%, transparent 100%);
-    mask-image: linear-gradient(to right, black 75%, transparent 100%);
+    overflow: hidden !important; /* clip tutaj */
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+  }
+  .reviews-slider {
+    overflow: visible !important; /* nie clipuj tutaj — pozwól na peek */
   }
   .reviews-arrow { display: none !important; }
   .reviews-slider .review-card {
-    /* Karta trochę węższa niż ekran — następna karta "zagląda" z prawej */
-    min-width: calc(100vw - 80px) !important;
-    max-width: calc(100vw - 80px) !important;
-    width: calc(100vw - 80px) !important;
+    /* Węższe niż ekran — następna karta zagląda z prawej */
+    min-width: calc(100vw - 72px) !important;
+    max-width: calc(100vw - 72px) !important;
+    width: calc(100vw - 72px) !important;
   }
 }
