@@ -364,14 +364,14 @@ document.addEventListener('DOMContentLoaded', function () {
   // --- "Pokaż więcej / mniej" ---
   function initExpandButtons() {
     document.querySelectorAll('.review-text').forEach(function (p) {
-      p.style.webkitLineClamp = 'unset';
-      p.style.maxHeight = 'none';
-      p.style.overflow = 'visible';
+      // Zdejmij clamp, zmierz pełną wysokość
+      p.style.cssText += ';-webkit-line-clamp:unset!important;max-height:none!important;overflow:visible!important';
       var fullHeight = p.scrollHeight;
-
-      p.style.webkitLineClamp = '';
-      p.style.maxHeight = '';
-      p.style.overflow = '';
+      // Przywróć
+      p.style.cssText = p.style.cssText
+        .replace(/;?-webkit-line-clamp:[^;]+/g, '')
+        .replace(/;?max-height:[^;]+/g, '')
+        .replace(/;?overflow:[^;]+/g, '');
       var clampedHeight = p.clientHeight;
 
       if (fullHeight > clampedHeight + 5) {
@@ -379,7 +379,6 @@ document.addEventListener('DOMContentLoaded', function () {
         btn.className = 'review-expand-btn';
         btn.textContent = 'Pokaż więcej';
         p.after(btn);
-
         btn.addEventListener('click', function () {
           var expanded = p.classList.toggle('review-text--expanded');
           btn.textContent = expanded ? 'Pokaż mniej' : 'Pokaż więcej';
@@ -388,58 +387,51 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // --- Slider z animacją transform ---
+  // --- Slider ---
   function initSlider() {
-    var slider = document.getElementById('reviewsSlider');
+    var slider  = document.getElementById('reviewsSlider');
     var btnLeft = document.getElementById('arrowLeft');
-    var btnRight = document.getElementById('arrowRight');
-
+    var btnRight= document.getElementById('arrowRight');
     if (!slider || !btnLeft || !btnRight) return;
 
-    // Owij karty w track (potrzebny do transform)
+    // Owij karty w track
     var track = document.createElement('div');
     track.className = 'reviews-track';
     while (slider.firstChild) track.appendChild(slider.firstChild);
     slider.appendChild(track);
 
-    var cards = Array.from(track.querySelectorAll('.review-card'));
-    var total = cards.length;
+    var cards   = Array.from(track.querySelectorAll('.review-card'));
+    var total   = cards.length;
     var current = 0;
 
-    function getCardWidth() {
+    function cardWidth() {
       return cards[0].getBoundingClientRect().width + 24;
     }
-
-    function visibleCount() {
-      return Math.max(1, Math.floor(slider.offsetWidth / getCardWidth()));
+    function visible() {
+      return Math.max(1, Math.floor(slider.offsetWidth / cardWidth()));
+    }
+    function maxIdx() {
+      return Math.max(0, total - visible());
+    }
+    function goTo(n) {
+      current = Math.max(0, Math.min(n, maxIdx()));
+      track.style.transform = 'translateX(-' + (current * cardWidth()) + 'px)';
+      btnLeft.disabled  = current <= 0;
+      btnRight.disabled = current >= maxIdx();
     }
 
-    function maxIndex() {
-      return Math.max(0, total - visibleCount());
-    }
-
-    function goTo(index) {
-      current = Math.max(0, Math.min(index, maxIndex()));
-      track.style.transform = 'translateX(-' + (current * getCardWidth()) + 'px)';
-      btnLeft.disabled = current === 0;
-      btnRight.disabled = current >= maxIndex();
-    }
-
-    btnLeft.addEventListener('click', function () { goTo(current - 1); });
+    btnLeft.addEventListener ('click', function () { goTo(current - 1); });
     btnRight.addEventListener('click', function () { goTo(current + 1); });
 
     // Swipe
-    var touchStartX = 0;
-    slider.addEventListener('touchstart', function (e) {
-      touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-    slider.addEventListener('touchend', function (e) {
-      var diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+    var tx = 0;
+    slider.addEventListener('touchstart', function (e) { tx = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend',   function (e) {
+      var d = tx - e.changedTouches[0].clientX;
+      if (Math.abs(d) > 50) goTo(current + (d > 0 ? 1 : -1));
     }, { passive: true });
 
     window.addEventListener('resize', function () { goTo(current); });
     goTo(0);
   }
-
 });
