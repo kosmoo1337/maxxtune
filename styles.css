@@ -1371,10 +1371,11 @@ footer {
   .reviews-arrow { width: 36px; height: 36px; font-size: 13px; }
 }
 @media (max-width: 480px) {
-  .reviews-outer { padding: 0 38px; }
+  .reviews-outer { padding: 0 !important; }
+  .reviews-arrow { display: none !important; }
   .reviews-slider .review-card {
-    min-width: calc(100vw - 96px) !important;
-    max-width: calc(100vw - 96px) !important;
-    width: calc(100vw - 96px) !important;
+    min-width: calc(100vw - 32px) !important;
+    max-width: calc(100vw - 32px) !important;
+    width: calc(100vw - 32px) !important;
   }
 }
