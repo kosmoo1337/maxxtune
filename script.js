@@ -353,66 +353,87 @@ window.addEventListener("resize", function () {
 // SLIDER OPINII — wklej do script.js
 // =============================
 
-(function () {
-  const slider = document.getElementById('reviewsSlider');
-  const btnLeft = document.getElementById('arrowLeft');
-  const btnRight = document.getElementById('arrowRight');
-  const dotsContainer = document.getElementById('reviewsDots');
+document.addEventListener('DOMContentLoaded', function () {
+
+  // --- "Pokaż więcej / mniej" ---
+  document.querySelectorAll('.review-text').forEach(function (p) {
+    // Sprawdź czy tekst jest obcięty
+    if (p.scrollHeight > p.clientHeight + 2) {
+      var btn = document.createElement('button');
+      btn.className = 'review-expand-btn';
+      btn.textContent = 'Pokaż więcej';
+      p.after(btn);
+
+      btn.addEventListener('click', function () {
+        var expanded = p.classList.toggle('review-text--expanded');
+        btn.textContent = expanded ? 'Pokaż mniej' : 'Pokaż więcej';
+      });
+    }
+  });
+
+  // --- Slider ---
+  var slider = document.getElementById('reviewsSlider');
+  var btnLeft = document.getElementById('arrowLeft');
+  var btnRight = document.getElementById('arrowRight');
+  var dotsContainer = document.getElementById('reviewsDots');
 
   if (!slider || !btnLeft || !btnRight || !dotsContainer) return;
 
-  const cards = slider.querySelectorAll('.review-card');
-  const total = cards.length;
-  let current = 0;
+  var cards = Array.from(slider.querySelectorAll('.review-card'));
+  var total = cards.length;
+  var current = 0;
+
+  function getCardWidth() {
+    return cards[0].getBoundingClientRect().width + 24; // 24 = gap
+  }
 
   function visibleCount() {
-    const sliderW = slider.offsetWidth;
-    const cardW = cards[0].offsetWidth + 24; // 24 = gap
-    return Math.max(1, Math.floor(sliderW / cardW));
+    return Math.max(1, Math.floor(slider.offsetWidth / getCardWidth()));
   }
 
   function buildDots() {
     dotsContainer.innerHTML = '';
-    const count = total - visibleCount() + 1;
-    for (let i = 0; i < count; i++) {
-      const d = document.createElement('button');
-      d.className = 'reviews-dot' + (i === 0 ? ' active' : '');
-      d.setAttribute('aria-label', 'Opinia ' + (i + 1));
-      d.addEventListener('click', () => goTo(i));
-      dotsContainer.appendChild(d);
+    var count = Math.max(1, total - visibleCount() + 1);
+    for (var i = 0; i < count; i++) {
+      (function (idx) {
+        var d = document.createElement('button');
+        d.className = 'reviews-dot' + (idx === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Opinia ' + (idx + 1));
+        d.addEventListener('click', function () { goTo(idx); });
+        dotsContainer.appendChild(d);
+      })(i);
     }
   }
 
   function updateDots() {
-    dotsContainer.querySelectorAll('.reviews-dot').forEach((d, i) => {
+    dotsContainer.querySelectorAll('.reviews-dot').forEach(function (d, i) {
       d.classList.toggle('active', i === current);
     });
   }
 
   function goTo(index) {
-    const maxIndex = total - visibleCount();
+    var maxIndex = Math.max(0, total - visibleCount());
     current = Math.max(0, Math.min(index, maxIndex));
-    const cardW = cards[0].offsetWidth + 24;
-    slider.scrollLeft = current * cardW;
+    slider.scrollLeft = current * getCardWidth();
     btnLeft.disabled = current === 0;
     btnRight.disabled = current >= maxIndex;
     updateDots();
   }
 
-  btnLeft.addEventListener('click', () => goTo(current - 1));
-  btnRight.addEventListener('click', () => goTo(current + 1));
+  btnLeft.addEventListener('click', function () { goTo(current - 1); });
+  btnRight.addEventListener('click', function () { goTo(current + 1); });
 
   // Swipe na mobile
-  let touchStartX = 0;
-  slider.addEventListener('touchstart', e => {
+  var touchStartX = 0;
+  slider.addEventListener('touchstart', function (e) {
     touchStartX = e.touches[0].clientX;
   }, { passive: true });
-  slider.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
+  slider.addEventListener('touchend', function (e) {
+    var diff = touchStartX - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
   }, { passive: true });
 
   buildDots();
   goTo(0);
-  window.addEventListener('resize', () => { buildDots(); goTo(current); });
-})();
+  window.addEventListener('resize', function () { buildDots(); goTo(current); });
+});
